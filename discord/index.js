@@ -15,22 +15,20 @@ client.once('ready', () => {
 });
 
 client.on('messageCreate', async (message) => {
-  if (message.author.bot) return; // Ignora i messaggi dei bot
+  if (message.author.bot) return;
   console.log(`Messaggio ricevuto: ${message.content}`);
-      try {
-        const response = await axios.post(process.env.N8N_DISCORD_WEBHOOK_DEV, 
-          {
-            user: message.author.username,
-            text: message.content
-          }
-        );
-    
+  try { //CHIAMA WEBHOOK N8N
+    const response = await axios.post('http://n8n:5678/webhook/75d66718-b11a-43f8-b5b3-6ec26099ce64', 
+      {
+        user: message.author.username,
+        text: message.content
+      }
+    );
+
     console.log('Risposta da n8n:', response.data);
-    // Se n8n risponde con un campo "text"
-    if (response.data && response.data.text) {
+    if (response.data && response.data.text) {  // Se n8n risponde con un campo "text"
       await message.reply(response.data.text);
-    } else if (response.data && response.data.reply) {
-      // Supporto per risposta "reply" se usata nel workflow
+    } else if (response.data && response.data.reply) {  // Supporto per risposta "reply" se usata nel workflow
       await message.reply(response.data.reply);
     } else {
       await message.reply('Ho ricevuto la tua richiesta!');

@@ -1,0 +1,9 @@
+n8n.localhost {
+    reverse_proxy n8n:5678
+    tls internal
+}
+
+shopify.localhost {
+    reverse_proxy shopify-service:3001
+    tls internal
+}
