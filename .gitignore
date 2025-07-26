@@ -1,0 +1,39 @@
+# File di ambiente
+.env
+.env.*
+
+# File di configurazione YAML sensibili
+*.secret.yaml
+*.private.yaml
+config/*.yaml
+*.yml
+
+# Credenziali o chiavi
+*.key
+*.pem
+*.crt
+
+# Cartelle temporanee o di build
+node_modules/
+dist/
+build/
+tmp/
+.cache/
+
+# Log files
+*.log
+
+# File di sistema
+.DS_Store
+Thumbs.db
+
+# Dati Qdrant (persistenza)
+qdrant/data/
+
+# Dati Ollama (modelli o cache)
+ollama/models/
+
+# Dati n8n (workflow persistenti)
+n8n/.n8n/
+
+*.sh
